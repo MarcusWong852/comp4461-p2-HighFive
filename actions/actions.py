@@ -25,3 +25,16 @@
 #         dispatcher.utter_message(text="Hello World!")
 #
 #         return []
+
+class ActionReportTemperature(Action):
+
+    def name(self) -> Text:
+        return "action_report_temperature"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            temperature = API.featchTemperature()
+        return []
+
