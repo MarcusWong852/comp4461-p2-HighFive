@@ -1,20 +1,36 @@
 import requests
-import json
+from util.apiUtil import ApiUtil
+from enum import Enum
+
+
+class HKOApiDataType(Enum):
+    LocalWeatherForecast = "flw"
+    LocalWeatherReport = "rhrread"
+
 
 class API():
 
     @staticmethod
-    def fetchTemperature():
-        url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=en"
+    def fetchWeatherForecast():
+        forecastData = {}
 
         try:
-            response = requests.get(url)
-            if response.status_code != 200:
+            forecastResponse = requests.get(
+                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherForecast))
+            reportResponse = requests.get(
+                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherReport))
+
+            if forecastResponse.status_code != 200 or reportResponse.status_code != 200:
                 raise
 
-            temperatureDataSet = response.json()['temperature']['data']
+            forecastData['forecastDesc'] = forecastResponse.json()[
+                'forecastDesc']
+
+            temperatureDataSet = reportResponse.json()['temperature']['data']
             for each in temperatureDataSet:
                 if each['place'] == 'King\'s Park':
-                    return each['value']
+                    forecastData['temperature'] = each['value']
+
+            return forecastData
         except Exception:
             print("Could not fetch temperature")

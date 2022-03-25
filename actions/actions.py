@@ -4,15 +4,16 @@ from rasa_sdk.executor import CollectingDispatcher
 import api
 
 
-class ActionReportTemperature(Action):
+class ActionWeatherForecast(Action):
 
     def name(self) -> Text:
-        return "action_report_temperature"
+        return "action_weather_forecast"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-            temperature = api.featchTemperature()
+        weatherForecast = api.fetechWeatherForecast()
+        dispatcher.utter_message(
+            text=f"The temperature is {weatherForecast.temperature}C, {weatherForecast.forecastDesc}")
         return []
-
