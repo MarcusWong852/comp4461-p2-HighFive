@@ -38,4 +38,4 @@ class API():
                 if each['place'] == 'King\'s Park':
                     return each['value']
         except Exception:
-            print("Could not fetch weather forecast")
+            print("Could not fetch weather temperature")

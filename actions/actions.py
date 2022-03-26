@@ -1,7 +1,7 @@
 from typing import Any, Text, Dict, List
+from api.api import API
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-import api
 
 
 class ActionWeatherForecast(Action):
@@ -13,8 +13,8 @@ class ActionWeatherForecast(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        weatherForecast = api.fetechWeatherForecast()
-        temperature = api.fetchTemperature()
+        weatherForecast = API.fetchWeatherForecast()
+        temperature = API.fetchTemperature()
         dispatcher.utter_message(
             text=f"The temperature is {temperature}C, {weatherForecast}")
         return []
