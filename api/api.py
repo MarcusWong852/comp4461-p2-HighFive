@@ -14,7 +14,7 @@ class API():
     def fetchWeatherForecast():
         try:
             response = requests.get(
-                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherForecast))
+                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherForecast.value))
 
             if response.status_code != 200:
                 raise
@@ -28,7 +28,7 @@ class API():
     def fetchTemperature():
         try:
             response = requests.get(
-                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherReport))
+                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherReport.value))
 
             if response.status_code != 200:
                 raise
