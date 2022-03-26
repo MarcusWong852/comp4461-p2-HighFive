@@ -14,6 +14,7 @@ class ActionWeatherForecast(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         weatherForecast = api.fetechWeatherForecast()
+        temperature = api.fetchTemperature()
         dispatcher.utter_message(
-            text=f"The temperature is {weatherForecast.temperature}C, {weatherForecast.forecastDesc}")
+            text=f"The temperature is {temperature}C, {weatherForecast}")
         return []

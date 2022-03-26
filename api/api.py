@@ -12,25 +12,30 @@ class API():
 
     @staticmethod
     def fetchWeatherForecast():
-        forecastData = {}
-
         try:
-            forecastResponse = requests.get(
+            response = requests.get(
                 ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherForecast))
-            reportResponse = requests.get(
-                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherReport))
 
-            if forecastResponse.status_code != 200 or reportResponse.status_code != 200:
+            if response.status_code != 200:
                 raise
 
-            forecastData['forecastDesc'] = forecastResponse.json()[
+            return response.json()[
                 'forecastDesc']
+        except Exception:
+            print("Could not fetch weather forecast")
 
-            temperatureDataSet = reportResponse.json()['temperature']['data']
+    @staticmethod
+    def fetchTemperature():
+        try:
+            response = requests.get(
+                ApiUtil.getHKOUrl(HKOApiDataType.LocalWeatherReport))
+
+            if response.status_code != 200:
+                raise
+
+            temperatureDataSet = response.json()['temperature']['data']
             for each in temperatureDataSet:
                 if each['place'] == 'King\'s Park':
-                    forecastData['temperature'] = each['value']
-
-            return forecastData
+                    return each['value']
         except Exception:
-            print("Could not fetch temperature")
+            print("Could not fetch weather forecast")
