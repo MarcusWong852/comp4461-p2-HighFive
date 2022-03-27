@@ -61,6 +61,10 @@ responses:
   utter_request_RAT:
     - text: "Please conduct RAT test for the patient immediately!\n
     Please take a photo immediately after reading the test to record the test result."
+  
+  utter_reminder_symptom:
+    - text: "Good, remember to monitor the symptom of the patient. Act immediatly if the situation get worse.\n
+    Severe symptoms may include shortness of breath, palpitation or chest pain. In case of emergency, please call 999"
 
 session_config:
   session_expiration_time: 60
