@@ -70,7 +70,6 @@ nlu:
     examples: |
       - my day was horrible
       - I am sad
-      - I don't feel very well
       - I am disappointed
       - super sad
       - I'm so sad
@@ -82,6 +81,16 @@ nlu:
       - extremly sad
       - so saad
       - so sad
+
+  - intent: mood_boring
+    examples: |
+      - i am so bored
+      - i have nothing to do
+      - it is so boring
+      - my life is so blend
+      - i am so frustring
+      - i so dry
+      - it not fun
 
   - intent: bot_challenge
     examples: |
