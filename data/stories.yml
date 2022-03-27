@@ -41,3 +41,17 @@ stories:
   - action: utter_greet
   - intent: give_time
   - action: action_show_time
+
+- story: Pop Music
+  steps:
+  - intent: inquire_music
+  - action: utter_which_type_music?
+  - intent: inquire_pop_music
+  - action: utter_pop_music
+
+- story: Soft Music
+  steps:
+  - intent: inquire_music
+  - action: utter_which_type_music?
+  - intent: inquire_soft_music
+  - action: utter_soft_music

@@ -125,3 +125,41 @@ nlu:
       - tell me the time
       - got the time
       - what time is it
+
+  # - intent: inquire_workout_videos
+  #   examples: |
+  #     - exercise
+  #     - workout
+  #     - fitness
+  #     - keep fit
+  #     - training
+  #     - gymnastics
+  #     - warm up
+  #     - daily training
+
+  - intent: inquire_music
+    examples: |
+      - I want some music
+      - song
+
+  - intent: inquire_pop_music
+    examples: |
+      - pop
+      - trending
+      - top
+
+  - intent: inquire_soft_music
+    examples: |
+      - I want soft music
+      - smooth
+      - pure
+      - Bandari
+  
+  - intent: feeling_tired
+    examples: |
+      - tired
+      - exhausted
+      - sleepy
+      - go to bed
+      - time to sleep
+    

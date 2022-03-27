@@ -12,6 +12,10 @@ intents:
   - inquire_weather
   - inquire_COVID_news
   - give_time
+  - inquire_music
+  - inquire_soft_music
+  - inquire_pop_music
+  - feeling_tired
 
 actions:
   - action_weather_forecast
@@ -20,7 +24,7 @@ actions:
 
 responses:
   utter_greet:
-    - text: "Hey! How are you?"
+    - text: "Hey! How are you? ヾ(•ω•`)o"
     - text: "Hi! Nice to meet you!"
     - text: "Hello! How can I help you?"
 
@@ -44,10 +48,22 @@ responses:
     - text: "Bye"
 
   utter_iamabot:
-    - text: "I am a bot, powered by Rasa."
+    - text: "I am your quarantine companion."
   
   utter_corona_gov_site:
     - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
+  
+  utter_which_type_music?:
+    - text: "Which genre of music you prefer? Pop music? Soft music?"
+    - text: "I have many types of music in my brain? Do you want pop songs or soft music?"
+  
+  utter_pop_music:
+    - text: "There you go ♪(´▽｀):\nhttps://youtu.be/dQw4w9WgXcQ"
+    - text: "How about this?\nhttps://youtu.be/fcZXfoB2f70"
+    - text: "Hope you like this:\nhttps://youtu.be/atuFSv2bLa8"
+  
+  utter_soft_music:
+    - text: "Calm radio for you~ (_　_)。゜zｚＺ:\nhttps://youtu.be/DWcJFNfaw9c"
 
 session_config:
   session_expiration_time: 60
