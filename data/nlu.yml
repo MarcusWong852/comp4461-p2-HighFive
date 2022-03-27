@@ -98,3 +98,14 @@ nlu:
       - is today cold?
       - is today windy?
       - will there be rain today?
+  
+  - intent: inquire_COVID_news
+    examples: |
+      - COVID situation
+      - COVID-19 news
+      - what is the pandemic situation?
+      - latest epidemic situation
+      - how should i deal with coronavirus
+      - COVID-19 death cases
+      - what is the vaccination date?
+      - how many vaccine dose should i take?

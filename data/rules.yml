@@ -15,3 +15,8 @@ rules:
     steps:
       - intent: inquire_weather
       - action: action_weather_forecast
+
+  - rule: give the gov website link when user ask for COVID relatled news and information
+    steps:
+      - intent: inquire_COVID_news
+      - action: utter_corona_gov_site

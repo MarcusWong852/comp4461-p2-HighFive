@@ -9,6 +9,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - inquire_weather
+  - inquire_COVID_news
 
 actions:
   - action_weather_forecast
@@ -32,6 +33,9 @@ responses:
 
   utter_iamabot:
     - text: "I am a bot, powered by Rasa."
+  
+  utter_corona_gov_site:
+    - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
 
 session_config:
   session_expiration_time: 60
