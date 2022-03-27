@@ -7,6 +7,7 @@ intents:
   - deny
   - mood_great
   - mood_unhappy
+  - mood_boring
   - bot_challenge
   - inquire_weather
   - inquire_COVID_news
@@ -21,6 +22,11 @@ responses:
   utter_cheer_up:
     - text: "Here is something to cheer you up:"
       image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_entertain:
+    - text: "Here is something intersting:\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
+    - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
+    - text: "Have you read these books?\nhttps://www.pdfbooksworld.com/popular-pdf-books\nThis a good way to broaden horizen during quaratine."
 
   utter_did_that_help:
     - text: "Did that help you?"
