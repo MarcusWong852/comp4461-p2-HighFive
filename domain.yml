@@ -11,6 +11,7 @@ intents:
   - bot_challenge
   - inquire_weather
   - inquire_COVID_news
+  - symptom
 
 actions:
   - action_weather_forecast
@@ -42,6 +43,24 @@ responses:
   
   utter_corona_gov_site:
     - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
+
+  utter_reassure_symptom:
+    - text: "Are you or one of your household member develop symptom of COVID-19?\n
+    (such as fever, cough, shortness of breath, muscle pain, headache, abdominal pain, vomiting etc.)"
+
+  utter_ques_RAT:
+    - text: "Have you conduct RAT (rapid antigen test) for the patient?\n
+    Or the patient is test positive for COVID-19 already?"
+
+  utter_ques_RAT_declare:
+    - text: "Did the positive case has declared to the government?"
+
+  utter_RAT_declare:
+    - text: "Please follow the instruction in website and finish the declaration:\nhttps://www.chp.gov.hk/ratp/"
+
+  utter_request_RAT:
+    - text: "Please conduct RAT test for the patient immediately!\n
+    Please take a photo immediately after reading the test to record the test result."
 
 session_config:
   session_expiration_time: 60

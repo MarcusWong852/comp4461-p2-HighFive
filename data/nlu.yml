@@ -34,6 +34,7 @@ nlu:
     examples: |
       - yes
       - y
+      - sure
       - indeed
       - of course
       - that sounds good
@@ -118,3 +119,14 @@ nlu:
       - COVID-19 death cases
       - what is the vaccination date?
       - how many vaccine dose should i take?
+
+  - intent: symptom
+    examples: |
+     - i feel sick
+     - i got a fever
+     - cough
+     - headache
+     - my head feel pain
+     - my mum is vomiting
+     - my dad got shortness of breath
+     - i am not feeling well
