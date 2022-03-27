@@ -1,3 +1,3 @@
 # Execution
 
-`rasa train` -> `rasa run actions` -> `rasa shell`
+`rasa train` -> `rasa run actions` -> New terminal `rasa shell`
