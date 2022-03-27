@@ -34,3 +34,10 @@ stories:
   steps:
   - intent: mood_boring
   - action: utter_entertain
+
+- story: path about time
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_time
+  - action: action_show_time

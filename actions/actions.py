@@ -36,3 +36,19 @@ class GreetTimeofDay(Action):
                 dispatcher.utter_message(text=f"Good Evening!")
 
             return []
+
+class TimeofDay(Action):
+
+    def name(self) -> Text:
+        return "action_show_time"
+
+    def run(self, dispatcher: CollectingDispatcher,
+                tracker: Tracker,
+                domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            
+            dt=datetime.datetime.now()
+            fullmonth=dt.strftime("%B")
+            fullweekday=dt.strftime("%A")
+            dispatcher.utter_message(text=f"Today is {fullweekday} {dt.day}th of {fullmonth}, {dt.hour}:{dt.minute}.")
+
+            return []

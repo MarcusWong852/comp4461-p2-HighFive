@@ -11,10 +11,12 @@ intents:
   - bot_challenge
   - inquire_weather
   - inquire_COVID_news
+  - give_time
 
 actions:
   - action_weather_forecast
   - action_greet_timeofday
+  - action_show_time
 
 responses:
   utter_greet:
