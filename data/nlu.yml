@@ -90,8 +90,8 @@ nlu:
       - it is so boring
       - my life is so blend
       - i am so frustring
-      - i so dry
-      - it not fun
+      - i am so dry
+      - it is not fun
 
   - intent: bot_challenge
     examples: |
@@ -105,6 +105,15 @@ nlu:
       - how's the weather today?
       - is the weather good today?
       - is today hot?
+      - is it hot out there?
+      - what is the weather outside?
+      - is it rainly?
+      - is it dry?
+      - it is so hot
+      - it is so cold
+      - what is the temperture outside?
+      - whats the temp?
+      - its so cold
       - is today cold?
       - is today windy?
       - will there be rain today?

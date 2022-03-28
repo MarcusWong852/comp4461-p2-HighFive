@@ -66,6 +66,21 @@ responses:
     - text: "Good, remember to monitor the symptom of the patient. Act immediatly if the situation get worse.\n
     Severe symptoms may include shortness of breath, palpitation or chest pain. In case of emergency, please call 999"
 
+  utter_reminder_health:
+    - text: "If you have the following warning symptoms, go to an Accident and Emergency (A&E) facility directly:\n
+- Persistent fever (>38.5°C) for more than 2 days despite fever-reducing medicine*\n
+- Hypothermia (≤35°C)\n
+- Convulsion\n
+- New onset of difficulty breathing or shortness of breath\n
+- Loss of speech or mobility\n
+- Inability to wake or stay awake\n
+- Pain or pressure in chest or abdomen\n
+- Dizziness or confusion or marked change in mental status\n
+- Weakness or unsteadiness\n
+- Decreased or no movement of fetus (for pregnant women at ≥ 24 weeks of gestation)\n
+- Persistent inability to drink or eat, or diarrhea / vomiting for more than 2 days\n
+* Please follow the medication instruction on intake of fever-reducing medicine and watch out for overdose\n"
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
