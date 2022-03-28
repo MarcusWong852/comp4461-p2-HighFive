@@ -3,3 +3,6 @@ models/
 *.pyc
 .rasa/cache/cache.db
 actions/__pycache__/actions.cpython-38.pyc
+.rasa/cache/cache.db
+actions/__pycache__/actions.cpython-38.pyc
+.rasa/cache/cache.db

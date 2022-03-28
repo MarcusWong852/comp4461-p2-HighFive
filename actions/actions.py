@@ -32,12 +32,14 @@ class GreetTimeofDay(Action):
             dt=datetime.datetime.now()
             if dt.hour < 12:
                 dispatcher.utter_message(text=f"Good Morning!")
+            elif dt.hour >= 12 and dt.hour <5:
+                dispatcher.utter_message(text=f"Good Afternoon!")
             else:
                 dispatcher.utter_message(text=f"Good Evening!")
 
             return []
 
-class TimeofDay(Action):
+class ReturnDate(Action):
 
     def name(self) -> Text:
         return "action_show_time"
@@ -49,6 +51,6 @@ class TimeofDay(Action):
             dt=datetime.datetime.now()
             fullmonth=dt.strftime("%B")
             fullweekday=dt.strftime("%A")
-            dispatcher.utter_message(text=f"Today is {fullweekday} {dt.day}th of {fullmonth}, {dt.hour}:{dt.minute}.")
+            dispatcher.utter_message(text=f"Today is {fullweekday} {dt.day}th of {fullmonth}, the time now is {dt.hour}:{dt.minute}.")
 
             return []
