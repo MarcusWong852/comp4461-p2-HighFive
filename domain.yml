@@ -17,6 +17,7 @@ intents:
   - inquire_pop_music
   - feeling_tired
   - request_jokes
+  - bot_challenge_humorous
 
 actions:
   - action_weather_forecast
@@ -42,6 +43,9 @@ responses:
 
   utter_did_that_help:
     - text: "Did that help you?"
+  
+  utter_sad_didn't_help:
+    - text: "Hmmmmm...How about a joke?"
 
   utter_happy:
     - text: "Great, carry on!"
@@ -66,6 +70,12 @@ responses:
   
   utter_soft_music:
     - text: "Calm radio for you~ (_　_)。゜zｚＺ:\nhttps://youtu.be/DWcJFNfaw9c"
+  
+  utter_i_am_humorous:
+    - text: "Yes! I am the most humorous bot in the planet! Let me cheer you up!"
+
+  utter_weather_loading:
+    - text: "Let me ask my friends at the Hong Kong Obeservatory.\nThere you go!"
 
 session_config:
   session_expiration_time: 60

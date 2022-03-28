@@ -28,7 +28,8 @@ stories:
   - action: utter_cheer_up
   - action: utter_did_that_help
   - intent: deny
-  - action: utter_goodbye
+  - action: utter_sad_didn't_help
+  - action: action_geek
 
 - story: bored path 
   steps:
@@ -55,3 +56,9 @@ stories:
   - action: utter_which_type_music?
   - intent: inquire_soft_music
   - action: utter_soft_music
+
+- story: HumorousRobotPath
+  steps:
+  - intent: bot_challenge_humorous
+  - action: utter_i_am_humorous
+  - action: action_geek

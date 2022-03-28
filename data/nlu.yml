@@ -38,6 +38,7 @@ nlu:
       - of course
       - that sounds good
       - correct
+      - ok
 
   - intent: deny
     examples: |
@@ -150,7 +151,7 @@ nlu:
 
   - intent: inquire_soft_music
     examples: |
-      - I want soft music
+      - I want soft
       - smooth
       - pure
       - Bandari
@@ -168,4 +169,8 @@ nlu:
       - jokes
       - fun jokes
       - tell me a joke
-      - funny
+  
+  - intent: bot_challenge_humorous
+    examples: |
+      - Are you humorous?
+      - Are you a funny robot

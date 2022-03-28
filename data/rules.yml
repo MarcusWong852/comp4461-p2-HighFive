@@ -14,6 +14,7 @@ rules:
   - rule: report the weather anytime the user ask for it
     steps:
       - intent: inquire_weather
+      - action: utter_weather_loading
       - action: action_weather_forecast
 
   - rule: give the gov website link when user ask for COVID relatled news and information
