@@ -27,7 +27,7 @@ responses:
   utter_entertain:
     - text: "Here is something intersting:\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
     - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
-    - text: "Have you read these books?\nhttps://www.pdfbooksworld.com/popular-pdf-books\nThis a good way to broaden horizen during quaratine."
+    - text: "Have you read these books?\nhttps://www.pdfbooksworld.com/popular-pdf-books \nThis a good way to broaden horizen during quaratine."
 
   utter_did_that_help:
     - text: "Did that help you?"
@@ -45,7 +45,7 @@ responses:
     - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
 
   utter_reassure_symptom:
-    - text: "Are you or one of your household member develop symptom of COVID-19?\n
+    - text: "Do you or one of your household member develop symptom of COVID-19?\n
     (such as fever, cough, shortness of breath, muscle pain, headache, abdominal pain, vomiting etc.)"
 
   utter_ques_RAT:
