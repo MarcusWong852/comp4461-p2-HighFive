@@ -76,6 +76,6 @@ class ActionGeek(Action):
         quote = request["quote"]
         ##permalink = request["permalink"]
         
-        message = "'" + quote + "'" + " - [" + author + "]" ##(" + permalink + ")"
+        message = "'" + quote + "'"## " - [" + author + "]" ##(" + permalink + ")"
         dispatcher.utter_message(message) 
         return []

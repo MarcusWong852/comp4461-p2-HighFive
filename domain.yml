@@ -72,10 +72,10 @@ responses:
     - text: "Calm radio for you~ (_　_)。゜zｚＺ:\nhttps://youtu.be/DWcJFNfaw9c"
   
   utter_i_am_humorous:
-    - text: "Yes! I am the most humorous bot in the planet! Let me cheer you up!"
+    - text: "Yes! I am the most humorous bot on the planet!"
 
   utter_weather_loading:
-    - text: "Let me ask my friends at the Hong Kong Obeservatory.\nThere you go!"
+    - text: "Let me ask my friends at the Hong Kong Observatory.\nThere you go!"
 
 session_config:
   session_expiration_time: 60
