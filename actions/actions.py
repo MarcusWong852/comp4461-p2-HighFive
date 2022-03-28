@@ -1,4 +1,13 @@
 import datetime
+
+import typing
+import logging
+import requests
+import json
+import re
+import csv
+import random
+
 from typing import Any, Text, Dict, List
 from api.api import API
 from rasa_sdk import Action, Tracker
@@ -54,3 +63,19 @@ class ReturnDate(Action):
             dispatcher.utter_message(text=f"Today is {fullweekday} {dt.day}th of {fullmonth}, the time now is {dt.hour}:{dt.minute}.")
 
             return []
+
+class ActionGeek(Action):
+    def name(self) -> Text:
+        return "action_geek"
+
+    def run(self, dispatcher, tracker, domain):
+        request = json.loads(
+            requests.get("http://quotes.stormconsultancy.co.uk/random.json").text
+        )  
+        author = request["author"]
+        quote = request["quote"]
+        ##permalink = request["permalink"]
+        
+        message = quote + " - [" + author + "]" ##(" + permalink + ")"
+        dispatcher.utter_message(message) 
+        return []

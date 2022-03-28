@@ -20,3 +20,8 @@ rules:
     steps:
       - intent: inquire_COVID_news
       - action: utter_corona_gov_site
+  
+  - rule: return a joke if the user asked
+    steps:
+      - intent: request_jokes
+      - action: action_geek

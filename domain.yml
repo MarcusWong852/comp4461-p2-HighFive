@@ -16,11 +16,13 @@ intents:
   - inquire_soft_music
   - inquire_pop_music
   - feeling_tired
+  - request_jokes
 
 actions:
   - action_weather_forecast
   - action_greet_timeofday
   - action_show_time
+  - action_geek
 
 responses:
   utter_greet:

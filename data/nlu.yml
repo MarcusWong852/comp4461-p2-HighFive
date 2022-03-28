@@ -163,3 +163,9 @@ nlu:
       - go to bed
       - time to sleep
     
+  - intent: request_jokes
+    examples: |
+      - jokes
+      - fun jokes
+      - tell me a joke
+      - funny
