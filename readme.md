@@ -5,3 +5,5 @@
 - return time
 - music
 - return joke
+- Add some reactions before the weather actually returns
+- Humorous robot path
