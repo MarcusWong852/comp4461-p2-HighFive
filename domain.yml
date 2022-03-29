@@ -11,18 +11,54 @@ intents:
   - bot_challenge
   - inquire_weather
   - inquire_COVID_news
+  - give_time
+  - inquire_music
+  - inquire_soft_music
+  - inquire_pop_music
+  - feeling_tired
+  - request_jokes
+  - bot_challenge_humorous
+  - inquire_workout_videos
+  - start_quarantine
+  - can_I_leave
+  - inquire_cat_imgs
+  - inquire_dog_imgs
+  - travel and scenic photos
   - symptom
 
 actions:
   - action_weather_forecast
+  - action_greet_timeofday
+  - action_show_time
+  - action_geek
+  - action_start_quarantine
+  - action_question_can_leave
+  - action_cat_img
+  - action_dog_img
+  - action_scenic_img
 
 responses:
   utter_greet:
-    - text: "Hey! How are you?"
+    - text: "Hey! How are you? ヾ(•ω•`)o"
+    - text: "Hi! Nice to meet you!"
+    - text: "Hello! How can I help you?"
+  
+  utter_thank_you:
+    - text: "Thank you! You are kind."
+    - text: "☆*: .｡. o(≧▽≦)o .｡.:*☆! ThankYou!"
 
+  utter_bot_usage_help:
+    - text: "🙇Sorry...I couldn't understand your words.\n
+            I can recommend videos🎬, images and jokes to you. As well as providing assistance during your quarantine.\n
+            Try to say words that are similar to 'Hi' or 'I want music' to start."
   utter_cheer_up:
     - text: "Here is something to cheer you up:"
-      image: "https://i.imgur.com/nGF1K8f.jpg"
+      image: "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
+
+  utter_entertain:
+    - text: "This intersting, isn't it?\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
+    - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
+    - text: "Have you read these books?📖\nhttps://www.pdfbooksworld.com/popular-pdf-books\nThis a good way to broaden horizen during quaratine."
 
   utter_entertain:
     - text: "Here is something intersting:\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
@@ -31,15 +67,74 @@ responses:
 
   utter_did_that_help:
     - text: "Did that help you?"
+    - text: "Did you feel better now?"
+  
+  utter_that_helped:
+    - text: "😌Good. If you are happy then I am also happy!"
+  
+  utter_sad_didn't_help:
+    - text: "Hmmmmm...How about a joke?😉"
 
   utter_happy:
     - text: "Great, carry on!"
+    - text: "Good😊"
 
   utter_goodbye:
     - text: "Bye"
+    - text: "Seeya"
+    - text: "GoodBye~"
+  
+  utter_goodnight:
+    - text: "See you tomorrow, Goodnight🌙🌙"
+    - text: "Have a nice sleep."
+    - text: "Here are some sleep music if you want\nhttps://youtu.be/7n9W8lKPdAE"
 
   utter_iamabot:
-    - text: "I am a bot, powered by Rasa."
+    - text: "I am your quarantine companion."
+  
+  utter_corona_gov_site:
+    - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
+  
+  utter_which_type_music?:
+    - text: "Which genre of music you prefer? Pop music? Soft music?🎵"
+    - text: "I have many types of music in my brain? Do you want pop songs or soft music?"
+  
+  utter_pop_music:
+    - text: "There you go ♪(´▽｀):\nhttps://youtu.be/dQw4w9WgXcQ"
+    - text: "How about this?\nhttps://youtu.be/fcZXfoB2f70"
+    - text: "Hope you like this:\nhttps://youtu.be/atuFSv2bLa8"
+  
+  utter_soft_music:
+    - text: "Calm radio for you~ (_　_)。゜zｚＺ:\nhttps://youtu.be/DWcJFNfaw9c"
+    - text: "Do you like Lofi music?:\nhttps://youtu.be/DWcJFNfaw9c"
+  
+  utter_i_am_humorous:
+    - text: "Yes! I am the most humorous bot on this planet!"
+    - text: "Sure! I can make you laugh anytime"
+  
+  utter_searching for jokes:
+    - text: "🤔Let me see...How about this? It sounds fun to me😂"
+    - text: "Take this...I bet you can't stop laughing for 5 minutes straight on!"
+  
+  utter_joke_ask_fun:
+    - text: "Is this fun?"
+    - text: "Did this make you laugh"
+  
+  utter_improve_next_time:
+    - text: "I will be better next time!"
+    - text: "Oh..I thought is was fun..But anyway."
+
+  utter_weather_loading:
+    - text: "Let me ask my friends at the Hong Kong Observatory☀️🌦️🌈.\nThere you go!"
+  
+  utter_workout:
+    - text: "💪Try this:\nhttps://www.youtube.com/watch?v=rI_6l992GrA"
+    - text: "This is for 15 minutes exercise💪\nhttps://youtu.be/326GR2A7q-s"
+    - text: "This one is shorter, only 10 minutes\nhttps://www.youtube.com/watch?v=zr08J6wB53Y"
+
+  utter_after_return_scenic_photos:
+    - text: "If I could travel like a human..."
+    - text: "You can plan ahead and go there after the Covid😀"
   
   utter_corona_gov_site:
     - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
@@ -80,6 +175,7 @@ responses:
 - Decreased or no movement of fetus (for pregnant women at ≥ 24 weeks of gestation)\n
 - Persistent inability to drink or eat, or diarrhea / vomiting for more than 2 days\n
 * Please follow the medication instruction on intake of fever-reducing medicine and watch out for overdose\n"
+
 
 session_config:
   session_expiration_time: 60
