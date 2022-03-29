@@ -5,11 +5,12 @@ stories:
 - story: happy path
   steps:
   - intent: greet
+  - action: action_greet_timeofday
   - action: utter_greet
   - intent: mood_great
   - action: utter_happy
 
-- story: sad path 1
+- story: sad path did not help
   steps:
   - intent: greet
   - action: utter_greet
@@ -17,9 +18,9 @@ stories:
   - action: utter_cheer_up
   - action: utter_did_that_help
   - intent: affirm
-  - action: utter_happy
+  - action: utter_that_helped
 
-- story: sad path 2
+- story: sad path did help
   steps:
   - intent: greet
   - action: utter_greet
@@ -27,4 +28,65 @@ stories:
   - action: utter_cheer_up
   - action: utter_did_that_help
   - intent: deny
-  - action: utter_goodbye
+  - action: utter_sad_didn't_help
+  - action: action_geek
+
+- story: bored path 
+  steps:
+  - intent: mood_boring
+  - action: utter_entertain
+
+- story: path about time
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_time
+  - action: action_show_time
+
+- story: Pop Music
+  steps:
+  - intent: inquire_music
+  - action: utter_which_type_music?
+  - intent: inquire_pop_music
+  - action: utter_pop_music
+
+- story: Soft Music
+  steps:
+  - intent: inquire_music
+  - action: utter_which_type_music?
+  - intent: inquire_soft_music
+  - action: utter_soft_music
+
+- story: HumorousRobotPath
+  steps:
+  - intent: bot_challenge_humorous
+  - action: utter_i_am_humorous
+  - action: action_geek
+
+- story: return a joke if the user asked fun
+  steps:
+  - intent: request_jokes
+  - action: utter_searching for jokes
+  - action: action_geek
+  - action: joke_ask_fun
+  - intent: affirm
+  - intent: utter_thank_you
+
+- story: return a joke if the user asked not fun
+  steps:
+  - intent: request_jokes
+  - action: utter_searching for jokes
+  - action: action_geek
+  - action: joke_ask_fun
+  - intent: deny
+  - intent: utter_improve_next_time
+
+- story: Workout
+  steps:
+  - intent: inquire_workout_videos
+  - action: utter_workout
+
+- story: feeling_tired
+  steps:
+  - intent: feeling_tired
+  - action: utter_goodnight
