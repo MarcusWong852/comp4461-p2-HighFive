@@ -12,3 +12,6 @@ module
 
 # Test files
 coverage
+
+# Cache files
+.cache
