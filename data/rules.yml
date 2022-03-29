@@ -53,18 +53,18 @@ rules:
       - intent: nlu_fallback
       - action: utter_bot_usage_help
   
-  # - rule: Activate Wordle Game
-  #   steps:
-  #     - intent: Start a wordle game
-  #     - action: action_play_mini_wordle
-  #     - action: wordle_answer
-  #     - active_loop: wordle_answer
+  - rule: Activate Wordle Game
+    steps:
+      - intent: Start a wordle game
+      - action: action_play_mini_wordle
+      - action: wordle_answer
+      - active_loop: wordle_answer
   
-  # - rule: Finish Wordle Game
-  #   condition:
-  #   - active_loop: wordle_answer
-  #   steps:
-  #   - action: wordle_answer
-  #   - active_loop: null
-  #   - slot_was_set:
-  #     - requested_slot: null
+  - rule: Finish Wordle Game
+    condition:
+    - active_loop: wordle_answer
+    steps:
+    - action: wordle_answer
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null

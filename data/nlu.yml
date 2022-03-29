@@ -210,15 +210,15 @@ nlu:
       - travel photos
   
   
-  # - intent: Start a wordle game
-  #   examples: |
-  #     - I want to have a game
-  #     - Do you have any game
-  #     - I want to play with you
+  - intent: Start a wordle game
+    examples: |
+      - I want to have a game
+      - Do you have any game
+      - I want to play with you
   
-  # - regex: wordle_guess
-  #   examples: |
-  #     - \w{5}
+  - regex: wordle_guess
+    examples: |
+      - \w{5,5}
   # - lookup: wordle_guess
   #   examples: |
   #     - SIGHT
@@ -233,11 +233,11 @@ nlu:
   #     - RIGHT
   #     - QUITE
 
-  # - intent: wordle_guesses
-  #   examples: |
-  #     - I guess is [ABCDE](wordle_guess)
-  #     - My answer is [GHIJK](wordle_guess)
-  #     - answer is [LMNOP](wordle_guess)
+  - intent: wordle_guesses
+    examples: |
+      - I guess is [HKUST](wordle_guess)
+      - My answer is [RALLY](wordle_guess)
+      - answer is [SHIRT](wordle_guess)
 
   # - intent: give_answer
   #   examples: |

@@ -180,38 +180,39 @@ class ActionCanleave(Action):
             dispatcher.utter_message(text=f"You only have {percentage_left_display}% left, {14-difference.days}days to go ✨")
         return []
 
-# class ActionminiWordle(Action):
-#     def name(self) -> Text:
-#         return "action_play_mini_wordle"
+class ActionminiWordle(Action):
+    def name(self) -> Text:
+        return "action_play_mini_wordle"
 
-#     def run(self, dispatcher, tracker, domain):
-#         word_list={}
-#         word_list['1'] = "SHIRT"
-#         word_list['2'] = "HKUST"
-#         word_list['3'] = "RALLY"
-#         Selected_word={}
-#         Selected_word1 = random.choice(list(word_list.values()))
-#         dispatcher.utter_message(text=f"{Selected_word1}") 
-#         Selected_word['1']= Selected_word1
+    def run(self, dispatcher, tracker, domain):
+        word_list={}
+        word_list['1'] = "SHIRT"
+        word_list['2'] = "HKUST"
+        word_list['3'] = "RALLY"
+        Selected_word={}
+        Selected_word1 = random.choice(list(word_list.values()))
+        dispatcher.utter_message(text=f"{Selected_word1}") 
+        Selected_word['1']= Selected_word1
 
-#         with open("Selected.json", "w") as outfile:
-#             json.dump(Selected_word, outfile)
-#         dispatcher.utter_message(text=f"How about a Mini-Wordle? Let's start now!") 
-#         ##dispatcher.utter_message(text=f"{text}") 
-#         return [SlotSet("wordle_guess", Selected_word1)]
+        with open("Selected.json", "w") as outfile:
+            json.dump(Selected_word, outfile)
+        dispatcher.utter_message(text=f"How about a Mini-Wordle? Let's start now!") 
+        ##return [SlotSet("wordle_guess", Selected_word1)]
+        return []
 
-# class ActionPlayingminiwordle(FormValidationAction):
-#     def name(self) -> Text:
-#         return "validate_wordle_answer"
+class ActionPlayingminiwordle(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_wordle_answer"
 
-#     def validate_wordle_guess(self, slot_value: Any, dispatcher, tracker, domain):
-#         with open('Selected.json') as json_file:
-#             data = json.load(json_file)
-#         if slot_value.upper() != data['1']:
-#             dispatcher.utter_message(text=f"Not this word")
-#             return {"wordle_guess":None}
-#         dispatcher.utter_message(text=f"Right Word") 
-#         return {"wordle_guess": slot_value}
+    def validate_wordle_guess(self, slot_value: Any, dispatcher, tracker, domain):
+        with open('Selected.json') as json_file:
+            data = json.load(json_file)
+        if slot_value.upper() != data['1']:
+            dispatcher.utter_message(text=f"Not this word")
+            return {"wordle_guess":None}
+        dispatcher.utter_message(text=f"Right Word") 
+        return {"wordle_guess": slot_value}
+
 # class verifyanswer(Action):
 
 #     def name(self) -> Text:

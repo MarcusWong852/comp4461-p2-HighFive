@@ -24,22 +24,22 @@ intents:
   - inquire_cat_imgs
   - inquire_dog_imgs
   - travel and scenic photos
-  # - Start a wordle game
-  # - wordle_guesses
+  - Start a wordle game
+  - wordle_guesses
   # - give_answer
 
-# entities:
-# - wordle_guess
-# slots:
-#   wordle_guess:
-#     type: text
-#     mappings:
-#     - type: from_entity
-#       entity: wordle_guess
-# forms:
-#   wordle_answer:
-#     required_slots:
-#       - wordle_guess
+entities:
+- wordle_guess
+slots:
+  wordle_guess:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: wordle_guess
+forms:
+  wordle_answer:
+    required_slots:
+      - wordle_guess
 
 actions:
   - action_weather_forecast
@@ -51,8 +51,8 @@ actions:
   - action_cat_img
   - action_dog_img
   - action_scenic_img
-  # - action_play_mini_wordle
-  # - validate_wordle_answer
+  - action_play_mini_wordle
+  - validate_wordle_answer
   # - action_verify_answer
 
 responses:
