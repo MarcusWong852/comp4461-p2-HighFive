@@ -68,7 +68,7 @@ stories:
   - intent: request_jokes
   - action: utter_searching for jokes
   - action: action_geek
-  - action: joke_ask_fun
+  - action: utter_joke_ask_fun
   - intent: affirm
   - intent: utter_thank_you
 
@@ -77,7 +77,7 @@ stories:
   - intent: request_jokes
   - action: utter_searching for jokes
   - action: action_geek
-  - action: joke_ask_fun
+  - action: utter_joke_ask_fun
   - intent: deny
   - intent: utter_improve_next_time
 
