@@ -10,7 +10,7 @@ stories:
   - intent: mood_great
   - action: utter_happy
 
-- story: sad path 1
+- story: sad path did not help
   steps:
   - intent: greet
   - action: utter_greet
@@ -18,9 +18,9 @@ stories:
   - action: utter_cheer_up
   - action: utter_did_that_help
   - intent: affirm
-  - action: utter_happy
+  - action: utter_that_helped
 
-- story: sad path 2
+- story: sad path did help
   steps:
   - intent: greet
   - action: utter_greet
@@ -63,16 +63,33 @@ stories:
   - action: utter_i_am_humorous
   - action: action_geek
 
-- story: return a joke if the user asked
+- story: return a joke if the user asked fun
   steps:
   - intent: request_jokes
   - action: utter_searching for jokes
   - action: action_geek
+  - action: joke_ask_fun
+  - intent: affirm
+  - intent: utter_thank_you
+
+- story: return a joke if the user asked not fun
+  steps:
+  - intent: request_jokes
+  - action: utter_searching for jokes
+  - action: action_geek
+  - action: joke_ask_fun
+  - intent: deny
+  - intent: utter_improve_next_time
 
 - story: Workout
   steps:
   - intent: inquire_workout_videos
   - action: utter_workout
+
+- story: feeling_tired
+  steps:
+  - intent: feeling_tired
+  - action: utter_goodnight
 
 # - story: game path
 #   steps:

@@ -186,6 +186,30 @@ nlu:
       - Can I leave
       - Quanrantine how many days left
   
+  - intent: inquire_cat_imgs
+    examples: |
+      - I want some cats
+      - Do you have cats image?
+      - cat photo
+      - cat image
+      - kitty photos
+  
+  - intent: inquire_dog_imgs
+    examples: |
+      - I want some dogs
+      - Do you have dogs image?
+      - dog photo
+      - dog image
+      - doggy photos
+  
+  - intent: travel and scenic photos
+    examples: |
+      - I want to travel...
+      - I want to see the word
+      - scenic places
+      - travel photos
+  
+  
   # - intent: Start a wordle game
   #   examples: |
   #     - I want to have a game
