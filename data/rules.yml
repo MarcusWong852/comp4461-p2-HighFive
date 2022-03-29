@@ -14,9 +14,41 @@ rules:
   - rule: report the weather anytime the user ask for it
     steps:
       - intent: inquire_weather
+      - action: utter_weather_loading
       - action: action_weather_forecast
 
   - rule: give the gov website link when user ask for COVID relatled news and information
     steps:
       - intent: inquire_COVID_news
       - action: utter_corona_gov_site
+ 
+  - rule: start quarantine
+    steps:
+      - intent: start_quarantine
+      - action: action_start_quarantine
+  
+  - rule: question can leave
+    steps:
+      - intent: can_I_leave
+      - action: action_question_can_leave
+  
+  - rule: return cat img
+    steps:
+      - intent: inquire_cat_imgs
+      - action: action_cat_img
+  
+  - rule: return dog img
+    steps:
+      - intent: inquire_dog_imgs
+      - action: action_dog_img
+  
+  - rule: return scenic photo
+    steps:
+      - intent: travel and scenic photos
+      - action: action_scenic_img
+      - action: utter_after_return_scenic_photos
+  
+  - rule: fallback return help
+    steps:
+      - intent: nlu_fallback
+      - action: utter_bot_usage_help
