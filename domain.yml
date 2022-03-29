@@ -56,7 +56,7 @@ responses:
       image: "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
 
   utter_entertain:
-    - text: "This intersting, isn't it?\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
+    - text: "This is intersting, isn't it?\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
     - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
     - text: "Have you read these books?📖\nhttps://www.pdfbooksworld.com/popular-pdf-books\nThis a good way to broaden horizen during quaratine."
 
