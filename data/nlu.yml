@@ -16,6 +16,7 @@ nlu:
       - goodmorning
       - goodevening
       - good afternoon
+      - yo bro
 
   - intent: goodbye
     examples: |
@@ -39,6 +40,7 @@ nlu:
       - of course
       - that sounds good
       - correct
+      - ok
 
   - intent: deny
     examples: |
@@ -129,6 +131,94 @@ nlu:
       - what is the vaccination date?
       - how many vaccine dose should i take?
 
+  - intent: give_time
+    examples: |
+      - can you tell me what time it is
+      - tell me the time
+      - got the time
+      - what time is it
+
+  - intent: inquire_workout_videos
+    examples: |
+      - exercise
+      - workout
+      - fitness
+      - keep fit
+      - training
+      - gymnastics
+      - warm up
+      - daily training
+
+  - intent: inquire_music
+    examples: |
+      - I want some music
+      - song
+
+  - intent: inquire_pop_music
+    examples: |
+      - pop
+      - trending
+      - top
+
+  - intent: inquire_soft_music
+    examples: |
+      - I want soft
+      - smooth
+      - pure
+      - Bandari
+  
+  - intent: feeling_tired
+    examples: |
+      - tired
+      - exhausted
+      - sleepy
+      - go to bed
+      - time to sleep
+    
+  - intent: request_jokes
+    examples: |
+      - jokes
+      - fun jokes
+      - tell me a joke
+  
+  - intent: bot_challenge_humorous
+    examples: |
+      - Are you humorous?
+      - Are you a funny robot
+
+  - intent: start_quarantine
+    examples: |
+      - I want to start my quarantine
+
+  - intent: can_I_leave
+    examples: |
+      - I want to leave
+      - Can I leave
+      - Quanrantine how many days left
+  
+  - intent: inquire_cat_imgs
+    examples: |
+      - I want some cats
+      - Do you have cats image?
+      - cat photo
+      - cat image
+      - kitty photos
+  
+  - intent: inquire_dog_imgs
+    examples: |
+      - I want some dogs
+      - Do you have dogs image?
+      - dog photo
+      - dog image
+      - doggy photos
+  
+  - intent: travel and scenic photos
+    examples: |
+      - I want to travel...
+      - I want to see the word
+      - scenic places
+      - travel photos
+
   - intent: symptom
     examples: |
      - i feel sick
@@ -139,3 +229,4 @@ nlu:
      - my mum is vomiting
      - my dad got shortness of breath
      - i am not feeling well
+
