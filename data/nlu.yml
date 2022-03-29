@@ -189,6 +189,8 @@ nlu:
   - intent: start_quarantine
     examples: |
       - I want to start my quarantine
+      - Please start my quaratine
+      - Start my quaratine now
 
   - intent: can_I_leave
     examples: |
@@ -229,4 +231,3 @@ nlu:
      - my mum is vomiting
      - my dad got shortness of breath
      - i am not feeling well
-

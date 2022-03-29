@@ -70,7 +70,7 @@ stories:
   - action: action_geek
   - action: utter_joke_ask_fun
   - intent: affirm
-  - intent: utter_thank_you
+  - action: utter_thank_you
 
 - story: return a joke if the user asked not fun
   steps:
@@ -79,7 +79,7 @@ stories:
   - action: action_geek
   - action: utter_joke_ask_fun
   - intent: deny
-  - intent: utter_improve_next_time
+  - action: utter_improve_next_time
 
 - story: Workout
   steps:

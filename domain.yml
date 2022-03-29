@@ -60,11 +60,6 @@ responses:
     - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
     - text: "Have you read these books?📖\nhttps://www.pdfbooksworld.com/popular-pdf-books\nThis a good way to broaden horizen during quaratine."
 
-  utter_entertain:
-    - text: "Here is something intersting:\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
-    - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
-    - text: "Have you read these books?\nhttps://www.pdfbooksworld.com/popular-pdf-books \nThis a good way to broaden horizen during quaratine."
-
   utter_did_that_help:
     - text: "Did that help you?"
     - text: "Did you feel better now?"
@@ -91,9 +86,6 @@ responses:
 
   utter_iamabot:
     - text: "I am your quarantine companion."
-  
-  utter_corona_gov_site:
-    - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
   
   utter_which_type_music?:
     - text: "Which genre of music you prefer? Pop music? Soft music?🎵"
