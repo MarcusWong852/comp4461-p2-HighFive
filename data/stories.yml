@@ -90,3 +90,45 @@ stories:
   steps:
   - intent: feeling_tired
   - action: utter_goodnight
+
+- story: RAT path 1
+  steps:
+  - intent: symptom
+  - action: utter_reassure_symptom
+  - intent: affirm
+  - action: utter_ques_RAT
+  - intent: affirm
+  - action: utter_ques_RAT_declare
+  - intent: deny
+  - action: utter_RAT_declare
+  - action: utter_reminder_health
+
+- story: RAT path 2
+  steps:
+  - intent: symptom
+  - action: utter_reassure_symptom
+  - intent: affirm
+  - action: utter_ques_RAT
+  - intent: affirm
+  - action: utter_ques_RAT_declare
+  - intent: affirm
+  - action: utter_reminder_symptom
+  - action: utter_reminder_health
+
+- story: RAT path 3
+  steps:
+  - intent: symptom
+  - action: utter_reassure_symptom
+  - intent: affirm
+  - action: utter_ques_RAT
+  - intent: deny
+  - action: utter_request_RAT
+  - action: utter_reminder_health
+
+- story: RAT path 4
+  steps:
+  - intent: symptom
+  - action: utter_reassure_symptom
+  - intent: deny
+  - action: utter_request_RAT
+  - action: utter_reminder_health
