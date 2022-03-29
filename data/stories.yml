@@ -62,3 +62,31 @@ stories:
   - intent: bot_challenge_humorous
   - action: utter_i_am_humorous
   - action: action_geek
+
+- story: return a joke if the user asked
+  steps:
+  - intent: request_jokes
+  - action: utter_searching for jokes
+  - action: action_geek
+
+- story: Workout
+  steps:
+  - intent: inquire_workout_videos
+  - action: utter_workout
+
+# - story: game path
+#   steps:
+#   - intent: Start a wordle game
+#   - action: action_play_mini_wordle
+#   - intent: give_answer
+#   - action: action_verify_answer
+#   - intent: give_answer
+#   - action: action_verify_answer
+#   - intent: give_answer
+#   - action: action_verify_answer
+#   - intent: give_answer
+#   - action: action_verify_answer
+#   - intent: give_answer
+#   - action: action_verify_answer
+#   - intent: give_answer
+#   - action: action_verify_answer

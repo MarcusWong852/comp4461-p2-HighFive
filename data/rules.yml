@@ -21,12 +21,7 @@ rules:
     steps:
       - intent: inquire_COVID_news
       - action: utter_corona_gov_site
-  
-  - rule: return a joke if the user asked
-    steps:
-      - intent: request_jokes
-      - action: action_geek
-  
+ 
   - rule: start quarantine
     steps:
       - intent: start_quarantine
@@ -36,3 +31,19 @@ rules:
     steps:
       - intent: can_I_leave
       - action: action_question_can_leave
+      
+  # - rule: Activate Wordle Game
+  #   steps:
+  #     - intent: Start a wordle game
+  #     - action: action_play_mini_wordle
+  #     - action: wordle_answer
+  #     - active_loop: wordle_answer
+  
+  # - rule: Finish Wordle Game
+  #   condition:
+  #   - active_loop: wordle_answer
+  #   steps:
+  #   - action: wordle_answer
+  #   - active_loop: null
+  #   - slot_was_set:
+  #     - requested_slot: null

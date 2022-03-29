@@ -11,8 +11,9 @@ import random
 
 from typing import Any, Text, Dict, List
 from api.api import API
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
 
 
 class ActionWeatherForecast(Action):
@@ -86,6 +87,7 @@ class ActionSetQuarantineDate(Action):
         return "action_start_quarantine"
 
     def run(self, dispatcher, tracker, domain):
+        text = tracker.latest_message['text']
         dt=datetime.datetime.now()
         fullmonth=dt.strftime("%B")
         fullweekday=dt.strftime("%A")
@@ -96,6 +98,7 @@ class ActionSetQuarantineDate(Action):
         with open("output.json", "w") as outfile:
             json.dump(dictionary, outfile)
         dispatcher.utter_message(text=f"Your quarantine starts now, today is {fullweekday} {dt.day}th of {fullmonth}") 
+        ##dispatcher.utter_message(text=f"{text}") 
         return []
 
 class ActionCanleave(Action):
@@ -110,8 +113,57 @@ class ActionCanleave(Action):
         enddate = datetime.datetime(dt.year, dt.month, dt.day)
         difference = enddate - startdate
         if difference.days > 14:
-            dispatcher.utter_message(text=f"You can leave! Good luck.")
+            dispatcher.utter_message(text=f"You made it! Hope we don't meet again 🤣.")
         elif difference.days <= 14:
-            dispatcher.utter_message(text=f"Unfortunately you can't leave now!")
-
+            dispatcher.utter_message(text=f"Add oil!")
+            percentage_left=(14-difference.days)/14*100
+            dispatcher.utter_message(text=f"You still have {percentage_left}%, {difference.days}days to go ✨")
         return []
+
+# class ActionminiWordle(Action):
+#     def name(self) -> Text:
+#         return "action_play_mini_wordle"
+
+#     def run(self, dispatcher, tracker, domain):
+#         word_list={}
+#         word_list['1'] = "SHIRT"
+#         word_list['2'] = "HKUST"
+#         word_list['3'] = "RALLY"
+#         Selected_word={}
+#         Selected_word1 = random.choice(list(word_list.values()))
+#         dispatcher.utter_message(text=f"{Selected_word1}") 
+#         Selected_word['1']= Selected_word1
+
+#         with open("Selected.json", "w") as outfile:
+#             json.dump(Selected_word, outfile)
+#         dispatcher.utter_message(text=f"How about a Mini-Wordle? Let's start now!") 
+#         ##dispatcher.utter_message(text=f"{text}") 
+#         return [SlotSet("wordle_guess", Selected_word1)]
+
+# class ActionPlayingminiwordle(FormValidationAction):
+#     def name(self) -> Text:
+#         return "validate_wordle_answer"
+
+#     def validate_wordle_guess(self, slot_value: Any, dispatcher, tracker, domain):
+#         with open('Selected.json') as json_file:
+#             data = json.load(json_file)
+#         if slot_value.upper() != data['1']:
+#             dispatcher.utter_message(text=f"Not this word")
+#             return {"wordle_guess":None}
+#         dispatcher.utter_message(text=f"Right Word") 
+#         return {"wordle_guess": slot_value}
+# class verifyanswer(Action):
+
+#     def name(self) -> Text:
+#         return "action_verify_answer"
+
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         useranswer = tracker.latest_message['text']
+#         answer = tracker.get_slot("wordle_guess")
+#         if answer == useranswer:
+#             dispatcher.utter_message(text="Right!")
+#         else:
+#             dispatcher.utter_message(text=f"Wrong!!")
+#         return []
