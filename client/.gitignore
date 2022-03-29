@@ -1,17 +1,6 @@
-# Package manager files
-node_modules
-npm-debug.log
-yarn-error.log
-
-# OSX
-.DS_Store
-
-# Build files
-lib
-module
-
-# Test files
-coverage
-
-# Cache files
 .cache
+dist
+node_modules
+yarn-error.log
+__pycache__
+.vscode
