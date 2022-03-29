@@ -15,6 +15,7 @@ class ActionWeatherForecast(Action):
 
         weatherForecast = API.fetchWeatherForecast()
         temperature = API.fetchTemperature()
+        degree_sign = u"\N{DEGREE SIGN}"
         dispatcher.utter_message(
-            text=f"The temperature now is {temperature}C, {weatherForecast}")
+            text=f"The temperature now is {temperature}{degree_sign}C, {weatherForecast}")
         return []
