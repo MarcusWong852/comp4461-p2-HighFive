@@ -24,6 +24,7 @@ intents:
   - inquire_cat_imgs
   - inquire_dog_imgs
   - travel and scenic photos
+  - symptom
 
 actions:
   - action_weather_forecast
@@ -58,6 +59,11 @@ responses:
     - text: "This intersting, isn't it?\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
     - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
     - text: "Have you read these books?📖\nhttps://www.pdfbooksworld.com/popular-pdf-books\nThis a good way to broaden horizen during quaratine."
+
+  utter_entertain:
+    - text: "Here is something intersting:\nhttps://www.youtube.com/watch?v=7yLxxyzGiko"
+    - text: "Maybe you can do some exercise:\nhttps://www.youtube.com/watch?v=80jGGI11_gc"
+    - text: "Have you read these books?\nhttps://www.pdfbooksworld.com/popular-pdf-books \nThis a good way to broaden horizen during quaratine."
 
   utter_did_that_help:
     - text: "Did that help you?"
@@ -129,6 +135,47 @@ responses:
   utter_after_return_scenic_photos:
     - text: "If I could travel like a human..."
     - text: "You can plan ahead and go there after the Covid😀"
+  
+  utter_corona_gov_site:
+    - text: "Here is the government site about all the information and news of corona virus:\nhttps://www.coronavirus.gov.hk/eng/"
+
+  utter_reassure_symptom:
+    - text: "Do you or one of your household member develop symptom of COVID-19?\n
+    (such as fever, cough, shortness of breath, muscle pain, headache, abdominal pain, vomiting etc.)"
+
+  utter_ques_RAT:
+    - text: "Have you conduct RAT (rapid antigen test) for the patient?\n
+    Or the patient is test positive for COVID-19 already?"
+
+  utter_ques_RAT_declare:
+    - text: "Did the positive case has declared to the government?"
+
+  utter_RAT_declare:
+    - text: "Please follow the instruction in website and finish the declaration:\nhttps://www.chp.gov.hk/ratp/"
+
+  utter_request_RAT:
+    - text: "Please conduct RAT test for the patient immediately!\n
+    Please take a photo immediately after reading the test to record the test result."
+  
+  utter_reminder_symptom:
+    - text: "Good, remember to monitor the symptom of the patient. Act immediatly if the situation get worse.\n
+    Severe symptoms may include shortness of breath, palpitation or chest pain. In case of emergency, please call 999"
+
+  utter_reminder_health:
+    - text: "If you have the following warning symptoms, go to an Accident and Emergency (A&E) facility directly:\n
+- Persistent fever (>38.5°C) for more than 2 days despite fever-reducing medicine*\n
+- Hypothermia (≤35°C)\n
+- Convulsion\n
+- New onset of difficulty breathing or shortness of breath\n
+- Loss of speech or mobility\n
+- Inability to wake or stay awake\n
+- Pain or pressure in chest or abdomen\n
+- Dizziness or confusion or marked change in mental status\n
+- Weakness or unsteadiness\n
+- Decreased or no movement of fetus (for pregnant women at ≥ 24 weeks of gestation)\n
+- Persistent inability to drink or eat, or diarrhea / vomiting for more than 2 days\n
+* Please follow the medication instruction on intake of fever-reducing medicine and watch out for overdose\n"
+
 
 session_config:
   session_expiration_time: 60
