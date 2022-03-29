@@ -1,5 +1,11 @@
-.cache
-.circleci
-yarn-error.log
-rasa_utils
-demo?.html
+/src
+index_for_react_app.js
+yarn.lock
+assets
+mocks
+coverage
+circle.yml
+.babelrc
+.eslintrc.js
+.eslintignore
+webpack.config.js

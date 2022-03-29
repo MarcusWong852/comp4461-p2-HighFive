@@ -1,223 +1,260 @@
-// @flow
-import type { ChatMessage } from "./Chatroom";
+import React, { forwardRef, useRef } from 'react';
 
-import "unfetch/polyfill";
-import "@babel/polyfill";
-import React from "react";
-import ReactDOM from "react-dom";
+import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
 
-import Chatroom from "./Chatroom";
-import { noop, sleep, uuidv4 } from "./utils";
-import ConnectedChatroom from "./ConnectedChatroom";
-import DebuggerView from "./DebuggerView";
+import Widget from './components/Widget';
+import { initStore } from '../src/store/store';
+import socket from './socket';
+import ThemeContext from '../src/components/Widget/ThemeContext';
+// eslint-disable-next-line import/no-mutable-exports
 
-const USERID_STORAGE_KEY = "simple-chatroom-cid";
+const ConnectedWidget = forwardRef((props, ref) => {
+  class Socket {
+    constructor(
+      url,
+      customData,
+      path,
+      protocol,
+      protocolOptions,
+      onSocketEvent
+    ) {
+      this.url = url;
+      this.customData = customData;
+      this.path = path;
+      this.protocol = protocol;
+      this.protocolOptions = protocolOptions;
+      this.onSocketEvent = onSocketEvent;
+      this.socket = null;
+      this.onEvents = [];
+      this.marker = Math.random();
+    }
 
-type ChatroomOptions = {
-  host: string,
-  title?: string,
-  welcomeMessage?: string,
-  speechRecognition?: string,
-  startMessage?: string,
-  container: HTMLElement,
-  waitingTimeout?: number,
-  fetchOptions?: RequestOptions,
-  rasaToken?: string,
-  voiceLang?: string
-};
+    isInitialized() {
+      return this.socket !== null && this.socket.connected;
+    }
 
-window.Chatroom = function(options: ChatroomOptions) {
-  let sessionUserId = window.sessionStorage.getItem(USERID_STORAGE_KEY);
-
-  const isNewSession = sessionUserId == null;
-
-  if (isNewSession) {
-    sessionUserId = uuidv4();
-    window.sessionStorage.setItem(USERID_STORAGE_KEY, sessionUserId);
-  }
-
-  this.ref = ReactDOM.render(
-    <ConnectedChatroom
-      userId={sessionUserId}
-      host={options.host}
-      title={options.title || "Chat"}
-      speechRecognition={options.speechRecognition}
-      welcomeMessage={options.welcomeMessage}
-      waitingTimeout={options.waitingTimeout}
-      fetchOptions={options.fetchOptions}
-      voiceLang={options.voiceLang}
-    />,
-    options.container
-  );
-
-  this.openChat = () => {
-    this.ref.setState({ isOpen: true });
-  };
-
-  if (isNewSession && options.startMessage != null) {
-    this.ref.sendMessage(options.startMessage);
-  }
-};
-
-type DemoChatroomOptions = {
-  title: string,
-  container: HTMLElement
-};
-
-window.DemoChatroom = function(options: DemoChatroomOptions) {
-  this.demoIsPlaying = false;
-
-  this.render = (
-    messages: Array<ChatMessage>,
-    showWaitingBubble: boolean = false
-  ) => {
-    this.ref = ReactDOM.render(
-      <Chatroom
-        messages={messages}
-        waitingForBotResponse={showWaitingBubble}
-        speechRecognition={null}
-        voiceLang={null}
-        isOpen={true}
-        title={options.title || "Chat"}
-        onButtonClick={noop}
-        onToggleChat={noop}
-        onSendMessage={noop}
-      />,
-      options.container
-    );
-  };
-
-  const sleepEffect = (time: number) => ({ type: "SLEEP", time });
-
-  // Works like redux-saga
-  function* demoSaga(
-    _messages: Array<ChatMessage>,
-    delay: number = 1000,
-    keyDelay: number = 100
-  ) {
-    if (this.demoIsPlaying) return;
-    this.demoIsPlaying = true;
-
-    if (_messages.length === 0) return;
-
-    const messages = _messages.map((m, i) => ({
-      message: m.message,
-      username: m.username || "user",
-      time: Date.now() + delay * i,
-      uuid: uuidv4()
-    }));
-
-    for (let i = -1; i < messages.length; i++) {
-      if (i < 0) {
-        this.render([], messages[0].username === "bot");
+    on(event, callback) {
+      if (!this.socket) {
+        this.onEvents.push({ event, callback });
       } else {
-        const currentMessage = messages[i];
-        const currentMessageContent = currentMessage.message;
-
-        // Show waiting when next message is a bot message
-        const showWaitingBubble =
-          i + 1 < messages.length && messages[i + 1].username === "bot";
-
-        // Show typing animation if current message is a user message
-        if (
-          currentMessage.username !== "bot" &&
-          currentMessageContent.type === "text"
-        ) {
-          const messageText = currentMessageContent.text;
-          this.ref.getInputRef().focus();
-          for (let j = 0; j < messageText.length && this.demoIsPlaying; j++) {
-            const currentMessageText = messageText.substring(0, j + 1);
-            this.ref.getInputRef().value = currentMessageText;
-            this.ref.getInputRef().scrollLeft = 100000;
-            yield sleepEffect(keyDelay);
-          }
-          yield sleepEffect(delay);
-          this.ref.getInputRef().value = "";
-          this.ref.getInputRef().blur();
-        }
-        if (
-          currentMessageContent.type === "button" &&
-          currentMessageContent.buttons.some(b => b.selected)
-        ) {
-          this.render(
-            messages.slice(0, i).concat({
-              username: currentMessage.username,
-              message: {
-                type: "button",
-                buttons: currentMessageContent.buttons.map(b => ({
-                  title: b.title,
-                  payload: b.payload
-                }))
-              }
-            })
-          );
-          yield sleepEffect(delay);
-        }
-        this.render(messages.slice(0, i + 1), showWaitingBubble);
+        this.socket.on(event, callback);
       }
-      yield sleepEffect(delay);
     }
 
-    this.demoIsPlaying = false;
+    emit(message, data) {
+      if (this.socket) {
+        this.socket.emit(message, data);
+      }
+    }
+
+    close() {
+      if (this.socket) {
+        this.socket.close();
+      }
+    }
+
+    createSocket() {
+      this.socket = socket(
+        this.url,
+        this.customData,
+        this.path,
+        this.protocol,
+        this.protocolOptions
+      );
+      // We set a function on session_confirm here so as to avoid any race condition
+      // this will be called first and will set those parameters for everyone to use.
+      this.socket.on('session_confirm', (sessionObject) => {
+        this.sessionConfirmed = true;
+        this.sessionId = (sessionObject && sessionObject.session_id)
+          ? sessionObject.session_id
+          : sessionObject;
+      });
+      this.onEvents.forEach((event) => {
+        this.socket.on(event.event, event.callback);
+      });
+
+      this.onEvents = [];
+      Object.keys(this.onSocketEvent).forEach((event) => {
+        this.socket.on(event, this.onSocketEvent[event]);
+      });
+    }
   }
 
-  this.demo = async (
-    messages: Array<ChatMessage>,
-    delay: number = 1000,
-    keyDelay: number = 100
-  ) => {
-    const saga = demoSaga.call(this, messages, delay, keyDelay);
-    let currentEffect = saga.next();
-    while (!currentEffect.done && this.demoIsPlaying) {
-      if (currentEffect.value.type === "SLEEP") {
-        await sleep(currentEffect.value.time);
-      }
-      currentEffect = saga.next();
-    }
+  const instanceSocket = useRef({});
+  const store = useRef(null);
 
-    // Cleanup
-    if (!currentEffect.done) {
-      this.render([]);
-      this.ref.getInputRef().value = "";
-      this.ref.getInputRef().blur();
-    }
-  };
-
-  this.clear = () => {
-    this.demoIsPlaying = false;
-    this.render([]);
-  };
-
-  this.render([]);
-};
-
-window.DebugChatroom = function(options: ChatroomOptions) {
-  let sessionUserId = window.sessionStorage.getItem(USERID_STORAGE_KEY);
-
-  const isNewSession = sessionUserId == null;
-
-  if (isNewSession) {
-    sessionUserId = uuidv4();
-    window.sessionStorage.setItem(USERID_STORAGE_KEY, sessionUserId);
+  if (!instanceSocket.current.url && !(store && store.current && store.current.socketRef)) {
+    instanceSocket.current = new Socket(
+      props.socketUrl,
+      props.customData,
+      props.socketPath,
+      props.protocol,
+      props.protocolOptions,
+      props.onSocketEvent
+    );
   }
 
-  this.ref = ReactDOM.render(
-    <DebuggerView
-      rasaToken={options.rasaToken}
-      userId={sessionUserId}
-      host={options.host}
-      title={options.title || "Chat"}
-      speechRecognition={options.speechRecognition}
-      welcomeMessage={options.welcomeMessage}
-      waitingTimeout={options.waitingTimeout}
-      fetchOptions={options.fetchOptions}
-      voiceLang={options.voiceLang}
-    />,
-    options.container
+  if (!instanceSocket.current.url && store && store.current && store.current.socketRef) {
+    instanceSocket.current = store.socket;
+  }
+
+  const storage =
+    props.params.storage === 'session' ? sessionStorage : localStorage;
+
+  if (!store || !store.current) {
+    store.current = initStore(
+      props.connectingText,
+      instanceSocket.current,
+      storage,
+      props.docViewer,
+      props.onWidgetEvent
+    );
+    store.current.socketRef = instanceSocket.current.marker;
+    store.current.socket = instanceSocket.current;
+  }
+  return (
+    <Provider store={store.current}>
+      <ThemeContext.Provider
+        value={{ mainColor: props.mainColor,
+          conversationBackgroundColor: props.conversationBackgroundColor,
+          userTextColor: props.userTextColor,
+          userBackgroundColor: props.userBackgroundColor,
+          assistTextColor: props.assistTextColor,
+          assistBackgoundColor: props.assistBackgoundColor }}
+      >
+        <Widget
+          ref={ref}
+          initPayload={props.initPayload}
+          title={props.title}
+          subtitle={props.subtitle}
+          customData={props.customData}
+          handleNewUserMessage={props.handleNewUserMessage}
+          profileAvatar={props.profileAvatar}
+          showCloseButton={props.showCloseButton}
+          showFullScreenButton={props.showFullScreenButton}
+          hideWhenNotConnected={props.hideWhenNotConnected}
+          connectOn={props.connectOn}
+          autoClearCache={props.autoClearCache}
+          fullScreenMode={props.fullScreenMode}
+          badge={props.badge}
+          embedded={props.embedded}
+          params={props.params}
+          storage={storage}
+          inputTextFieldHint={props.inputTextFieldHint}
+          openLauncherImage={props.openLauncherImage}
+          closeImage={props.closeImage}
+          customComponent={props.customComponent}
+          displayUnreadCount={props.displayUnreadCount}
+          socket={instanceSocket.current}
+          showMessageDate={props.showMessageDate}
+          customMessageDelay={props.customMessageDelay}
+          tooltipPayload={props.tooltipPayload}
+          tooltipDelay={props.tooltipDelay}
+          disableTooltips={props.disableTooltips}
+          defaultHighlightCss={props.defaultHighlightCss}
+          defaultHighlightAnimation={props.defaultHighlightAnimation}
+          defaultHighlightClassname={props.defaultHighlightClassname}
+        />
+      </ThemeContext.Provider>
+    </Provider>
   );
+});
 
-  const { startMessage } = options;
-  if (isNewSession && startMessage != null) {
-    this.ref.getChatroom().sendMessage(startMessage);
-  }
+ConnectedWidget.propTypes = {
+  initPayload: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  protocol: PropTypes.string,
+  socketUrl: PropTypes.string.isRequired,
+  socketPath: PropTypes.string,
+  protocolOptions: PropTypes.shape({}),
+  customData: PropTypes.shape({}),
+  handleNewUserMessage: PropTypes.func,
+  profileAvatar: PropTypes.string,
+  inputTextFieldHint: PropTypes.string,
+  connectingText: PropTypes.string,
+  showCloseButton: PropTypes.bool,
+  showFullScreenButton: PropTypes.bool,
+  hideWhenNotConnected: PropTypes.bool,
+  connectOn: PropTypes.oneOf(['mount', 'open']),
+  autoClearCache: PropTypes.bool,
+  onSocketEvent: PropTypes.objectOf(PropTypes.func),
+  fullScreenMode: PropTypes.bool,
+  badge: PropTypes.number,
+  embedded: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  params: PropTypes.object,
+  openLauncherImage: PropTypes.string,
+  closeImage: PropTypes.string,
+  docViewer: PropTypes.bool,
+  customComponent: PropTypes.func,
+  displayUnreadCount: PropTypes.bool,
+  showMessageDate: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  customMessageDelay: PropTypes.func,
+  tooltipPayload: PropTypes.string,
+  tooltipDelay: PropTypes.number,
+  onWidgetEvent: PropTypes.shape({
+    onChatOpen: PropTypes.func,
+    onChatClose: PropTypes.func,
+    onChatVisible: PropTypes.func,
+    onChatHidden: PropTypes.func
+  }),
+  disableTooltips: PropTypes.bool,
+  defaultHighlightCss: PropTypes.string,
+  defaultHighlightAnimation: PropTypes.string,
+  mainColor: PropTypes.string,
+  conversationBackgroundColor: PropTypes.string,
+  userTextColor: PropTypes.string,
+  userBackgroundColor: PropTypes.string,
+  assistTextColor: PropTypes.string,
+  assistBackgoundColor: PropTypes.string
 };
+
+ConnectedWidget.defaultProps = {
+  title: 'Welcome',
+  customData: {},
+  inputTextFieldHint: 'Type a message...',
+  connectingText: 'Waiting for server...',
+  fullScreenMode: false,
+  hideWhenNotConnected: true,
+  autoClearCache: false,
+  connectOn: 'mount',
+  onSocketEvent: {},
+  protocol: 'socketio',
+  socketUrl: 'http://localhost',
+  protocolOptions: {},
+  badge: 0,
+  embedded: false,
+  params: {
+    storage: 'local'
+  },
+  docViewer: false,
+  showCloseButton: true,
+  showFullScreenButton: false,
+  displayUnreadCount: false,
+  showMessageDate: false,
+  customMessageDelay: (message) => {
+    let delay = message.length * 30;
+    if (delay > 3 * 1000) delay = 3 * 1000;
+    if (delay < 800) delay = 800;
+    return delay;
+  },
+  tooltipPayload: null,
+  tooltipDelay: 500,
+  onWidgetEvent: {
+    onChatOpen: () => {},
+    onChatClose: () => {},
+    onChatVisible: () => {},
+    onChatHidden: () => {}
+  },
+  disableTooltips: false,
+  mainColor: '',
+  conversationBackgroundColor: '',
+  userTextColor: '',
+  userBackgroundColor: '',
+  assistTextColor: '',
+  assistBackgoundColor: ''
+};
+
+export default ConnectedWidget;
