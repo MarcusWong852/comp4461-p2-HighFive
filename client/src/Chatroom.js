@@ -226,13 +226,6 @@ export default class Chatroom extends Component<ChatroomProps, ChatroomState> {
             ref={this.inputRef}
           />
           <input type="submit" value="Submit" />
-          {this.props.speechRecognition != null ? (
-            <SpeechInput
-              language={this.props.speechRecognition}
-              onSpeechInput={message => this.handleInputChange(message, true)}
-              onSpeechEnd={this.handleSubmitMessage}
-            />
-          ) : null}
         </form>
       </div>
     );
