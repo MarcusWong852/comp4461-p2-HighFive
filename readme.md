@@ -9,7 +9,7 @@
   - Useful authority links to Covid information
   - linked to HKO APIs to return realtime weather and temperature
   
- - Entertainment:
+- Entertainment:
   - music - soft/pop music videos
   - return joke - jokes[fun/not fun path]
   - workout videos
