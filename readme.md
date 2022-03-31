@@ -1,27 +1,28 @@
 # Execution
 
 `rasa train` -> `rasa run actions` -> New terminal `rasa shell`
-
-- Put down feature/things to look for, so easier to make videos
-- miscellaneous/make it more humanly
-
-  - greet according to time
-  - Add some reactions before the weather actually returns
-  - emojis, 表情符號 Emoticon
-  - user feeling tired -> goodnight
-  - nlu fallback -> provide help if can't recognise users input
-  - robot humorous path
-
-- Entertain - actual functions to display:
-
-  - music - soft/pop
-  - return joke - jokes[fun/not fun]
+# Major features
+- Informational& Covid Related functions:
+  - return time in friendly format
+  - can start quarantine, query days left, quarantine progress bar
+  - Covid symptoms responses (guide users through what to do if they feel sick)
+  - Useful authority links to Covid information
+  - linked to HKO APIs to return realtime weather and temperature
+  
+- Entertainment:
+  - music - soft/pop music videos
+  - return joke - jokes[fun/not fun path]
   - workout videos
   - return cat/dog/travel images
 
-- Informational - actual functions to display:
-  - return time in friendly format
-  - start quarantine, query days left, quarantine progress
+- miscellaneous/humanly tweak
+  - greet according to time
+  - Add some reactions before the weather actually returns
+  - use of emojis, 表情符號 Emoticon
+  - user feeling tired -> goodnight path
+  - nlu fallback -> provide help to use the robot if can't recognise users input
+  - robot humorous path
+
 
 # Connect to Telegram
 
