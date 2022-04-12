@@ -1,3 +1,4 @@
+
 import datetime
 
 import typing
@@ -78,4 +79,39 @@ class ActionGeek(Action):
         
         message = "'" + quote + "'"## " - [" + author + "]" ##(" + permalink + ")"
         dispatcher.utter_message(message) 
+        return []
+
+class ActionSetQuarantineDate(Action):
+    def name(self) -> Text:
+        return "action_start_quarantine"
+
+    def run(self, dispatcher, tracker, domain):
+        dt=datetime.datetime.now()
+        fullmonth=dt.strftime("%B")
+        fullweekday=dt.strftime("%A")
+        dictionary={}
+        dictionary['date'] = dt.day
+        dictionary['month'] = dt.month
+        dictionary['year'] = dt.year
+        with open("output.json", "w") as outfile:
+            json.dump(dictionary, outfile)
+        dispatcher.utter_message(text=f"Your quarantine starts now, today is {fullweekday} {dt.day}th of {fullmonth}") 
+        return []
+
+class ActionCanleave(Action):
+    def name(self) -> Text:
+        return "action_question_can_leave"
+
+    def run(self, dispatcher, tracker, domain):
+        dt=datetime.datetime.now()
+        with open('output.json') as json_file:
+            data = json.load(json_file)
+        startdate = datetime.datetime(data['year'], data['month'], data['date'])
+        enddate = datetime.datetime(dt.year, dt.month, dt.day)
+        difference = enddate - startdate
+        if difference.days > 14:
+            dispatcher.utter_message(text=f"You can leave! Good luck.")
+        elif difference.days <= 14:
+            dispatcher.utter_message(text=f"Unfortunately you can't leave now!")
+
         return []

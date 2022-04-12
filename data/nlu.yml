@@ -128,16 +128,16 @@ nlu:
       - got the time
       - what time is it
 
-  # - intent: inquire_workout_videos
-  #   examples: |
-  #     - exercise
-  #     - workout
-  #     - fitness
-  #     - keep fit
-  #     - training
-  #     - gymnastics
-  #     - warm up
-  #     - daily training
+  - intent: inquire_workout_videos
+    examples: |
+      - exercise
+      - workout
+      - fitness
+      - keep fit
+      - training
+      - gymnastics
+      - warm up
+      - daily training
 
   - intent: inquire_music
     examples: |
@@ -175,3 +175,12 @@ nlu:
     examples: |
       - Are you humorous?
       - Are you a funny robot
+
+  - intent: start_quarantine
+    examples: |
+      - I want to start my quarantine
+
+  - intent: can_I_leave
+    examples: |
+      - I want to leave
+      - Can I leave

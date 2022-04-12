@@ -26,3 +26,13 @@ rules:
     steps:
       - intent: request_jokes
       - action: action_geek
+  
+  - rule: start quarantine
+    steps:
+      - intent: start_quarantine
+      - action: action_start_quarantine
+  
+  - rule: question can leave
+    steps:
+      - intent: can_I_leave
+      - action: action_question_can_leave

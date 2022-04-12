@@ -18,12 +18,17 @@ intents:
   - feeling_tired
   - request_jokes
   - bot_challenge_humorous
+  - inquire_workout_videos
+  - start_quarantine
+  - can_I_leave
 
 actions:
   - action_weather_forecast
   - action_greet_timeofday
   - action_show_time
   - action_geek
+  - action_start_quarantine
+  - action_question_can_leave
 
 responses:
   utter_greet:
@@ -76,6 +81,11 @@ responses:
 
   utter_weather_loading:
     - text: "Let me ask my friends at the Hong Kong Observatory.\nThere you go!"
+  
+  utter_workout:
+    - text: "Try this:\nhttps://www.youtube.com/watch?v=rI_6l992GrA"
+    - text: "This is for 15 minutes exercise\nhttps://youtu.be/326GR2A7q-s"
+    - text: "This one is shorter, only 10 minutes\nhttps://www.youtube.com/watch?v=zr08J6wB53Y"
 
 session_config:
   session_expiration_time: 60
